@@ -35,5 +35,23 @@ namespace EDA.Tests
 
             Assert.Equal(expected, newState.Value);
         }
+
+        [Fact]
+        public void Test3()
+        {
+            //ARRANGE
+            var state = new BribeState();
+            var id = Guid.NewGuid();
+
+            //ACT
+            // (c, state) -> events
+            var happend = Bribe.Handle(new Plan { BribeId = id, InitialValue = value }, state);
+
+            //ASSERT
+            // (events, state) -> newState
+            var newState = happend.Aggregate(state, (s, e) => s.When(e));
+
+            Assert.Equal(id, newState.Id);
+        }
     }
 }
