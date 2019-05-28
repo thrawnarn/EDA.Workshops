@@ -17,21 +17,23 @@ namespace EDA.Tests
             Assert.True(happened.OfType<Planned>().Any());
         }
 
-        [Fact]
-        public void Test2()
+        [Theory]
+        [InlineData(100, 100)]
+        [InlineData(200, 200)]
+        public void Test2(int value, int expected)
         {
             //ARRANGE
             var state = new BribeState();
             
             //ACT
             // (c, state) -> events
-            var happend = Bribe.Handle(new Plan { BribeId = Guid.NewGuid(), InitialValue = 100 }, state);
+            var happend = Bribe.Handle(new Plan { BribeId = Guid.NewGuid(), InitialValue = value }, state);
 
             //ASSERT
             // (events, state) -> newState
             var newState = happend.Aggregate(state, (s, e) => s.When(e));
 
-            Assert.Equal(100, newState.Value);
+            Assert.Equal(expected, newState.Value);
         }
     }
 }
