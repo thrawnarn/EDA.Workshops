@@ -41,10 +41,6 @@ namespace EDA.Tests
 
         BribeState Apply(IEvent @event) => this;
 
-        BribeState Apply(Planned @event) {
-            return this;
-        }
-
     }
 
     public enum BribeStatus
