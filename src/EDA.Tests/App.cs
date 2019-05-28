@@ -40,6 +40,11 @@ namespace EDA.Tests
         public BribeState When(IEvent @event) => Apply((dynamic)@event);
 
         BribeState Apply(IEvent @event) => this;
+
+        BribeState Apply(Planned @event) {
+            return this;
+        }
+
     }
 
     public enum BribeStatus
