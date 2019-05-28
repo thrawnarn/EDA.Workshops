@@ -1,39 +1,9 @@
-using System;
-using System.Linq;
-using Xunit;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace EDA.Tests
 {
-    public class UnitTest1
-    {
-        [Fact]
-        public void Test1()
-        {
-            //ACT
-            // (c, state) -> events
-            var happend = Bribe.Handle(new Plan { BribeId = Guid.NewGuid(), InitialValue = 100 }, new BribeState());
-
-            //ASSERT
-            Assert.True(happend.OfType<Planed>().Any());
-        }
-
-        [Fact]
-        public void Test2()
-        {
-            //ARRANGE
-            var state = new BribeState();
-            
-            //ACT
-            // (c, state) -> events
-            var happend = Bribe.Handle(new Plan { BribeId = Guid.NewGuid(), InitialValue = 100 }, state);
-
-            //ASSERT
-            // (events, state) -> newState
-            var newState = happend.Aggregate(state, (s, e) => s.When(e));
-
-            Assert.Equal(100, newState.Value);
-        }
-    }
 
     public static class Bribe
     {

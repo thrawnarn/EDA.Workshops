@@ -6,4 +6,5 @@
 
 ### Run
 
+- go to src/EDA.Tests
 - dotnet watch test
