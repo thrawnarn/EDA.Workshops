@@ -18,9 +18,9 @@ namespace EDA.Tests
         public int InitialValue { get; set; }
     }
 
-    public class Planed : IEvent
+    public class Planned : IEvent
     {
-        public Planed(Guid bribeId)
+        public Planned(Guid bribeId)
         {
             BribeId = bribeId;
         }

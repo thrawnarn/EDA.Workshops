@@ -11,10 +11,10 @@ namespace EDA.Tests
         {
             //ACT
             // (c, state) -> events
-            var happend = Bribe.Handle(new Plan { BribeId = Guid.NewGuid(), InitialValue = 100 }, new BribeState());
+            var happened = Bribe.Handle(new Plan { BribeId = Guid.NewGuid(), InitialValue = 100 }, new BribeState());
 
             //ASSERT
-            Assert.True(happend.OfType<Planed>().Any());
+            Assert.True(happened.OfType<Planned>().Any());
         }
 
         [Fact]
