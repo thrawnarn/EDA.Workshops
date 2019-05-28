@@ -45,7 +45,7 @@ namespace EDA.Tests
 
             //ACT
             // (c, state) -> events
-            var happend = Bribe.Handle(new Plan { BribeId = id, InitialValue = value }, state);
+            var happend = Bribe.Handle(new Plan { BribeId = id, InitialValue = 100 }, state);
 
             //ASSERT
             // (events, state) -> newState
