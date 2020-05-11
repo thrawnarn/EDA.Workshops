@@ -4,7 +4,7 @@ using Xunit;
 
 namespace EDA.Tests
 {
-    public class Tests
+    public class StateChangeTestscs
     {
         [Fact]
         public void Test1()

@@ -32,15 +32,11 @@ namespace EDA.Tests
     public class BribeState
     {
         public Guid Id { get; private set; }
-
         public int Value { get; private set; }
-
         public BribeStatus Status { get; private set; }
-
+        public string Target { get; set; }
         public BribeState When(IEvent @event) => Apply((dynamic)@event);
-
         BribeState Apply(IEvent @event) => this;
-
     }
 
     public enum BribeStatus
