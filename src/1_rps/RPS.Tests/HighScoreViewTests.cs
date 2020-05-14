@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Xunit;
+
+namespace RPS.Tests
+{
+    public class HighScoreViewTests
+    {
+        [Fact]
+        public void Highscore()
+        {
+            var playerOne = "alex@rpsgame.com";
+            var playerTwo = "lisa@rpsgame.com";
+            var state = Enumerable
+                .Range(0, 20)
+                .SelectMany((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i}", playerOne, playerTwo))
+                .Rehydrate<HighScoreView>();
+
+            Assert.True(true);
+        }
+
+        public static IEvent[] GameEvents(Guid gameId, string title, string loosingPlayer, string winningPlayer)
+            => new IEvent[] {
+                new GameCreated { GameId = gameId, PlayerId = loosingPlayer, Rounds = 1, Title = title },
+                new GameStarted { GameId = gameId, PlayerId = winningPlayer },
+                new RoundStarted { GameId = gameId, Round = 1 },
+                new HandShown { GameId = gameId, Hand = Hand.Paper, PlayerId = loosingPlayer },
+                new HandShown { GameId = gameId, Hand = Hand.Rock, PlayerId = winningPlayer },
+                new RoundEnded { GameId = gameId, Round = 1, Looser = loosingPlayer, Winner = winningPlayer },
+                new GameEnded { GameId = gameId }
+            };
+    }
+}

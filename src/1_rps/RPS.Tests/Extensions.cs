@@ -6,6 +6,6 @@ namespace RPS.Tests
     public static class Extensions
     {
         public static TState Rehydrate<TState>(this IEnumerable<IEvent> events) where TState : new()
-            => events.Aggregate(new TState(), (s, @event) => ((dynamic)s).When((dynamic)@event));
+            => events.Aggregate(new TState(), (s, @event) => ((dynamic)s).When((dynamic)s, (dynamic)@event));
     }
 }
