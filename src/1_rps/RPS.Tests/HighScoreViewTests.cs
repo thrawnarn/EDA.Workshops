@@ -13,12 +13,19 @@ namespace RPS.Tests
         {
             var playerOne = "alex@rpsgame.com";
             var playerTwo = "lisa@rpsgame.com";
+            var playerThree = "julie@rpsgame.com";
             var state = Enumerable
                 .Range(0, 20)
                 .SelectMany((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i}", playerOne, playerTwo))
+                .Concat(Enumerable.Range(0, 10)
+                .SelectMany((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i + 20}", playerTwo, playerOne)))
+                .Concat(Enumerable.Range(0, 15)
+                .SelectMany((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i + 30}", playerThree, playerOne)))
+                .Concat(Enumerable.Range(0, 5)
+                .SelectMany((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i + 45}", playerTwo, playerThree)))
                 .Rehydrate<HighScoreView>();
 
-            Assert.True(true);
+            Assert.Equal(25, state.Rows.OrderByDescending(r => r.Rank).First().GamesWon);
         }
 
         public static IEvent[] GameEvents(Guid gameId, string title, string loosingPlayer, string winningPlayer)
