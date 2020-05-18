@@ -79,6 +79,16 @@ namespace RPS.Tests
         public IDictionary<string, string> Meta { get; set; }
     }
 
+    public class GamePlayed : IEvent
+    {
+        public Guid GameId { get; set; }
+        public int Rounds { get; set; }
+        public string Winner { get; set; }
+        public string Looser { get; set; }
+        public string SourceId => GameId.ToString();
+        public IDictionary<string, string> Meta { get; set; }
+    }
+
     public enum Hand
     {
         None = 0,
