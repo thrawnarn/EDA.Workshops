@@ -25,6 +25,13 @@ namespace RPS.Tests
         public string PlayerId { get; set; }
     }
 
+    public class PlayGame
+    {
+        public Guid GameId { get; set; }
+        public Hand Hand { get; set; }
+        public string PlayerId { get; set; }
+    }
+
     public class GameCreated : IEvent
     {
         public Guid GameId { get; set; }

@@ -7,10 +7,13 @@ namespace RPS.Tests
     public static class Game
     {
         public static IEnumerable<IEvent> Handle(CreateGame command, GameState state)
-         => Array.Empty<IEvent>();
+            => Array.Empty<IEvent>();
 
         public static IEnumerable<IEvent> Handle(JoinGame command, GameState state)
-         => Array.Empty<IEvent>();
+            => Array.Empty<IEvent>();
+
+        public static IEnumerable<IEvent> Handle(PlayGame command, GameState state)
+            => Array.Empty<IEvent>();
 
 
     }

@@ -61,5 +61,51 @@ namespace RPS.Tests
             //Then  
             Assert.False(events.Any());
         }
+
+        [Fact]
+        public void Handshown()
+        {
+            var gameId = Guid.NewGuid();
+
+            //Given
+            var state = new IEvent[] {
+                new GameCreated { GameId = gameId, PlayerId = "test@tester.com", Rounds = 1, Title = "test game" },
+                new GameStarted { GameId = gameId, PlayerId = "foo@tester.com" },
+                new RoundStarted { GameId = gameId, Round = 1 }
+                }.Rehydrate<GameState>();
+
+            //When
+            var events = Game.Handle(
+                new PlayGame { GameId = gameId, PlayerId = "foo@tester.com", Hand = Hand.Paper },
+                state
+                );
+
+            //Then  
+            Assert.True(events.OfType<HandShown>().Any());
+        }
+
+        [Fact]
+        public void GameEnd()
+        {
+            var gameId = Guid.NewGuid();
+
+            //Given
+            var state = new IEvent[] {
+                new GameCreated { GameId = gameId, PlayerId = "test@tester.com", Rounds = 1, Title = "test game" },
+                new GameStarted { GameId = gameId, PlayerId = "foo@tester.com" },
+                new RoundStarted { GameId = gameId, Round = 1 },
+                new HandShown { GameId = gameId, PlayerId = "test@tester.com", Hand = Hand.Paper }
+            }.Rehydrate<GameState>();
+
+            //When
+            var events = Game.Handle(
+                new PlayGame { GameId = gameId, PlayerId = "foo@tester.com", Hand = Hand.Rock },
+                state
+                );
+
+            //Then  
+            Assert.True(events.OfType<RoundEnded>().All(x => x.Winner == "test@tester.com"));
+            Assert.True(events.OfType<GameEnded>().Any());
+        }
     }
 }
