@@ -11,6 +11,14 @@ Get all the tests in "[GameStateViewTests](RPS.Tests/GameStateViewTests.cs)" gre
 ```bash
 dotnet watch test
 ```
+All test uses an extensions to "replay" the history into a state, using;
+
+```csharp
+Rehydrate<GameState>();
+```
+
+Take a look how the When functions are used in [Extensions](RPS.Tests/Extensions.cs).
+
 
 ## Exercise #1-2
 
