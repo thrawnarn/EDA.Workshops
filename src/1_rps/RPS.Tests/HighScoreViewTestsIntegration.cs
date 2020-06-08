@@ -40,9 +40,13 @@ namespace RPS.Tests
                 new GameCreated { GameId = gameId, PlayerId = loosingPlayer, Rounds = 1, Title = title },
                 new GameStarted { GameId = gameId, PlayerId = winningPlayer },
                 new RoundStarted { GameId = gameId, Round = 1 },
-                new HandShown { GameId = gameId, Hand = Hand.Paper, PlayerId = loosingPlayer },
+                new HandShown { GameId = gameId, Hand = Hand.Scissors, PlayerId = loosingPlayer },
                 new HandShown { GameId = gameId, Hand = Hand.Rock, PlayerId = winningPlayer },
                 new RoundEnded { GameId = gameId, Round = 1, Looser = loosingPlayer, Winner = winningPlayer },
+                new RoundStarted { GameId = gameId, Round = 2 },
+                new HandShown { GameId = gameId, Hand = Hand.Scissors, PlayerId = loosingPlayer },
+                new HandShown { GameId = gameId, Hand = Hand.Paper, PlayerId = winningPlayer },
+                new RoundEnded { GameId = gameId, Round = 2, Looser = loosingPlayer, Winner = winningPlayer },
                 new GameEnded { GameId = gameId }
             };
     }
