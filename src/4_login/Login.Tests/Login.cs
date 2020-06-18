@@ -33,23 +33,4 @@ namespace Login.Tests
             //TODO
             .Count() <= 3;
     }
-
-    public class AuthenticationException : Exception
-    {
-        public AuthenticationException(string message) : base(message)
-        {}
-    }
-
-    public class Login : ICommand
-    { }
-
-    public class AuthenticationAttemptFailed : IEvent
-    {
-        public string SourceId => "auth";
-
-        public DateTime Time { get; set; }
-
-        public IDictionary<string, string> Meta { get; set; }
-
-    }
 }
