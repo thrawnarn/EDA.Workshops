@@ -58,7 +58,6 @@ namespace Patitioning.Tests
             => events.ToList().ForEach(e => store.Append(e.GetType().Name, e));
     }
 
-
     public static class EventStoreRoomExtensions
     { 
             public static string[] GetCheckedInRoomIds(this EventStore store)
