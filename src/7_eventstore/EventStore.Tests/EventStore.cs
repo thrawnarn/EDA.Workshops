@@ -39,7 +39,7 @@ namespace Subscription.Tests
             if (duplicates.Any())
                 throw new Exception($"Tried to append duplicates in stream - {streamName}. {string.Join(',', duplicates.Select(d => $"{d.EventName} - {d.EventId}"))}");
 
-            var position = positionProvider(); //TODO naive
+            var position = positionProvider();
 
             var toAppend = events
                 .Select((e, i) => new EventData(e, lastVersion + (i + 1), position + (i + 1), e.EventId, e.GetType().Name))
