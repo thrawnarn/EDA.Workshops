@@ -26,6 +26,8 @@ namespace RPS.Tests
                 .Rehydrate<HighScoreView>();
 
             Assert.Equal(25, state.Rows.OrderBy(r => r.Rank).First().GamesWon);
+            Assert.Equal(playerOne, state.Rows.OrderBy(r => r.Rank).First().PlayerId);
+            Assert.Equal(50, state.Rows.Sum(x => x.GamesWon));
         }
 
         public static IEvent[] GameEvents(Guid gameId, string title, string loosingPlayer, string winningPlayer)
