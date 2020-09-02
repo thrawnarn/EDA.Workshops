@@ -25,7 +25,7 @@ namespace RPS.Tests
                 .SelectMany((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i + 45}", playerTwo, playerThree)))
                 .Rehydrate<HighScoreView>();
 
-            Assert.Equal(25, state.Rows.OrderBy(r => r.Rank).First().GamesWon);
+            Assert.Equal(20, state.Rows.OrderBy(r => r.Rank).First().GamesWon);
         }
 
         public static IEvent[] GameEvents(Guid gameId, string title, string loosingPlayer, string winningPlayer)
