@@ -30,6 +30,6 @@ Note that a full implementation is not needed. Focus on getting the test to pass
 Get all tests in "[HighScoreViewTestsIntegration](RPS.Tests/HighScoreViewTestsIntegration.cs)" green by adding overloads to "GamePlayed" and in later test add an overload to "HighScoreView"
 Note that a full implementation is not needed. Focus on getting the test to pass.
 Bonus;
-- one part of the view is imposible to implement, why ?
+- one part of the view is impossible to implement, why ?
 - And how could this be fixed?
 
