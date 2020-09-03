@@ -23,8 +23,13 @@ Take a look how the When functions are used in [Extensions](RPS.Tests/Extensions
 ## Exercise #1-2
 
 Get all the tests in "[HighScoreViewTests](RPS.Tests/HighScoreViewTests.cs)" green by adding overload to "[HighScoreView](RPS.Tests/HighScoreView.cs)"
+Note that a full implementation is not needed. Focus on getting the test to pass.
 
 ## Excercise #1-3
 
 Get all tests in "[HighScoreViewTestsIntegration](RPS.Tests/HighScoreViewTestsIntegration.cs)" green by adding overloads to "GamePlayed" and in later test add an overload to "HighScoreView"
+Note that a full implementation is not needed. Focus on getting the test to pass.
+Bonus;
+- one part of the view is impossible to implement, why ?
+- And how could this be fixed?
 

@@ -86,7 +86,5 @@ namespace RPS.Tests
                 _ => new RoundStarted { GameId = command.GameId, Round = state.Round + 1 }
             };
         }
-
-
     }
 }

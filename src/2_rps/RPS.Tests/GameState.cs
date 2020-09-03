@@ -12,7 +12,6 @@ namespace RPS.Tests
         public GameStatus Status { get; set; }
 
         public GameState When(IEvent @event) => this;
-
         public GameState When(GameCreated @event)
         {
             Status = GameStatus.ReadyToStart;
@@ -68,5 +67,4 @@ namespace RPS.Tests
             Ended = 50
         }
     }
-
 }
