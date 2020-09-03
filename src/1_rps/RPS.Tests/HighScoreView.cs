@@ -8,7 +8,7 @@ namespace RPS.Tests
     {
         public HighScoreView When(IEvent @event) => this;
 
-        public ScoreRow[] Rows { get; set; } = Array.Empty<ScoreRow>();
+        public ScoreRow[] Rows { get; private set; } = Array.Empty<ScoreRow>();
 
         readonly Dictionary<Guid, List<(string player, int score)>> Games = new Dictionary<Guid, List<(string player, int score)>>();
 

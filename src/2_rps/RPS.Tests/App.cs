@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static RPS.Tests.GameState;
 
 namespace RPS.Tests
 {
@@ -119,12 +120,11 @@ namespace RPS.Tests
         Scissors = 30
     }
 
-    public enum GameStatus
+    public enum RoundResult
     {
-        None = 0,
-        ReadyToStart = 10,
-        Started = 20,
-        Ended = 50
+        Tied = 10,
+        Won = 20,
+        Lost = 30
     }
 
 }
