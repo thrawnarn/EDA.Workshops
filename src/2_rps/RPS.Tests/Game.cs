@@ -14,7 +14,5 @@ namespace RPS.Tests
 
         public static IEnumerable<IEvent> Handle(PlayGame command, GameState state)
             => Array.Empty<IEvent>();
-
-
     }
 }

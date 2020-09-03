@@ -84,7 +84,7 @@ namespace RPS.Tests
             Assert.True(events.OfType<HandShown>().Any());
         }
 
-        [Fact]
+        [Fact(Skip = "Bonus")]
         public void GameEnd()
         {
             var gameId = Guid.NewGuid();
@@ -104,8 +104,8 @@ namespace RPS.Tests
                 );
 
             //Then  
-            Assert.True(events.OfType<RoundEnded>().All(x => x.Winner == "test@tester.com"));
-            Assert.True(events.OfType<GameEnded>().Any());
+            Assert.True(events.OfType<RoundEnded>().All(x => x.Winner == "test@tester.com"), "Wrong winner");
+            Assert.True(events.OfType<GameEnded>().Any(), "No game end");
         }
     }
 }
