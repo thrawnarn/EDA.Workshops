@@ -43,8 +43,8 @@ namespace Shipping.Tests
 
         public Order When(IEvent @event) => this;
 
-        public Order When(PaymentComplete @event) => this;
-        public Order When(PackingComplete @event) => this;
+        public Order When(PaymentRecieved @event) => this;
+        public Order When(GoodsPicked @event) => this;
 
     }
 }
