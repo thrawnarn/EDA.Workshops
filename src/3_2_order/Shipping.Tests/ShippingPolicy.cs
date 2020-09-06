@@ -66,5 +66,4 @@ namespace Shipping.Tests
             return this;
         }
     }
-
 }
