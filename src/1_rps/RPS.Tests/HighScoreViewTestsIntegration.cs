@@ -37,6 +37,28 @@ namespace RPS.Tests
             Assert.Equal(50, state.Rows.Sum(x => x.GamesWon));
         }
 
+        [Fact]
+        public void HighScoreWithIntegrationEventHistory()
+        {
+            var playerOne = "alex@rpsgame.com";
+            var playerTwo = "lisa@rpsgame.com";
+            var playerThree = "julie@rpsgame.com";
+            var state = Enumerable
+                .Range(0, 20)
+                .Select((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i}", playerOne, playerTwo).Rehydrate<GamePlayed>())
+                .Concat(Enumerable.Range(0, 10)
+                .Select((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i + 20}", playerTwo, playerOne).Rehydrate<GamePlayed>()))
+                .Concat(Enumerable.Range(0, 15)
+                .Select((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i + 30}", playerThree, playerOne).Rehydrate<GamePlayed>()))
+                .Concat(Enumerable.Range(0, 5)
+                .Select((x, i) => GameEvents(Guid.NewGuid(), $"Game_{i + 45}", playerTwo, playerThree).Rehydrate<GamePlayed>()))
+                .Rehydrate<HighScoreViewHistory>();
+
+            Assert.Equal(25, state.Rows.OrderBy(r => r.Rank).First().GamesWon);
+            Assert.Equal(playerOne, state.Rows.OrderBy(r => r.Rank).First().PlayerId);
+            Assert.Equal(50, state.Rows.Sum(x => x.GamesWon));
+        }
+
         public static IEvent[] GameEvents(Guid gameId, string title, string loosingPlayer, string winningPlayer)
             => new IEvent[] {
                 new GameCreated { GameId = gameId, PlayerId = loosingPlayer, Rounds = 1, Title = title },
