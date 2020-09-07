@@ -10,7 +10,7 @@ namespace Login.Tests
         [Fact]
         public void ThreeFailedAttemptsLast16MinutesSucceceeds()
         {
-            var app = new App(() => DateTime.Parse("2020-06-10 13:30"));
+            var app = new App(() => DateTime.Parse("2020-06-01 13:30"));
             var time = DateTime.Parse("2020-06-01 13:15");
 
             //Given
@@ -27,7 +27,7 @@ namespace Login.Tests
         [Fact]
         public void ThreeFailedAttemptsLast15minutesThrows()
         {
-            var app = new App(() => DateTime.Parse("2020-06-10 13:30"));
+            var app = new App(() => DateTime.Parse("2020-06-01 13:30"));
             var time = DateTime.Parse("2020-06-01 13:15");
 
             //Given
