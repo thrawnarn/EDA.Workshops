@@ -4,7 +4,7 @@
 
 Get all the tests in "[GameStateChangeTests](RPS.Tests/GameStateChangeTests.cs)" green by;
 
-1. Implementing the methods in "[Game](RPS:Tests/Game.cs)". 
+1. Implementing the methods in "[Game](RPS.Tests/Game.cs)". 
 
 2. Adding overloads with matching events to the "[gamestate](RPS.Tests/GameState.cs)" class.
 
