@@ -22,7 +22,7 @@ namespace Subscription.Tests
             var e2 = new GameStarted { GameId = Guid.NewGuid(), PlayerId = "rob@rps.com" };
             await store.AppendToStreamAsync($"game-{e2.GameId}", new[] { e2 });
 
-            await Task.Delay(100);
+            await Task.Delay(600);
 
             var r = await store.LoadEventStreamAsync("projection-ongoing-games", 0);
 

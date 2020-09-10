@@ -23,5 +23,4 @@
 
         public GameStatus Status { get; set; }
     }
-
 }
