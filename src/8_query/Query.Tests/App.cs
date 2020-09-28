@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Query.Tests
 {
@@ -12,7 +13,12 @@ namespace Query.Tests
         public void Given(params IEvent[] events) => history.AddRange(events);
 
         public Task<T> QueryAsync<T>(IQuery<T> q)
-            => Task.FromResult<T>(default);
+            where T : class
+            => q switch
+            {
+                GameQuery query => Task.FromResult(history.Rehydrate<GamesView>().Games.Single(x => x.Key == query.GameId.ToString()).Value as T),
+                _ => Task.FromResult(default(T))
+            };
     }
 
     public interface IEvent
