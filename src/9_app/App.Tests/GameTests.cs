@@ -6,7 +6,7 @@ using Xunit;
 
 namespace App.Tests
 {
-    public class UnitTest1
+    public class GameTests
     {
         [Fact]
         public async Task CreateGame()
