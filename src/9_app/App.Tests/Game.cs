@@ -22,6 +22,9 @@ namespace App.Tests
 
         public static IEnumerable<IEvent> Handle(JoinGame command, GameState state)
         {
+            if (state.Players.PlayerOne == null)
+                yield break;
+
             if (state.Players.PlayerOne.Id == command.PlayerId)
                 yield break;
 
