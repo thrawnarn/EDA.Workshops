@@ -14,8 +14,13 @@ namespace Patitioning.Tests
 				.Select(o => o.Key)
 				.ToArray();
 
-        public static string[] GetRoomsToClean(this EventStore store)
-            => Array.Empty<string>();
-
-    }
+		public static string[] GetRoomsToClean(this EventStore store)
+			  => store.Read(0, int.MaxValue)
+				  .Select(x => x.Content)
+				  .OfType<IRoomEvent>()
+				  .GroupBy(o => o.RoomId)
+				  .Where(o => o.Last() is RoomCleaningRequested)
+				  .Select(o => o.Key)
+				  .ToArray();
+	}
 }

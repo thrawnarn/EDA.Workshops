@@ -25,17 +25,17 @@ namespace Subscription.Tests
                     streamName,
                     key => AppendToStream(Array.Empty<EventData>(), key, concurreny, events, () => store.Values.Count()),
                     (key, value) => AppendToStream(value, key, concurreny, events, () => store.Values.Count()))
-             .Last().EventVersion
+             .LastOrDefault().Pipe(x => x == null ? concurreny.version : x.EventVersion)
              );
 
         static EventData[] AppendToStream(EventData[] currentValue, string streamName, (long version, bool check) concurreny, IEvent[] events, Func<long> positionProvider)
         {
             var lastVersion = currentValue.Any() ? currentValue.Last().EventVersion : 0;
 
-            if (false) //TODO fix
+            if (concurreny.check && lastVersion != concurreny.version)
                 throw new DBConcurrencyException($"wrong version - expected {concurreny.version} but was {lastVersion} - in stream {streamName}");
 
-            var duplicates = Array.Empty<EventData>(); //TODO fix
+            var duplicates = currentValue.Where(x => events.Any(e => e.EventId == x.EventId));
             if (duplicates.Any())
                 throw new Exception($"Tried to append duplicates in stream - {streamName}. {string.Join(',', duplicates.Select(d => $"{d.EventName} - {d.EventId}"))}");
 
