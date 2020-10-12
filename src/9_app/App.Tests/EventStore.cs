@@ -25,7 +25,7 @@ namespace App.Tests
                     streamName,
                     key => AppendToStream(Array.Empty<EventData>(), key, concurreny, events, () => store.Values.Count()),
                     (key, value) => AppendToStream(value, key, concurreny, events, () => store.Values.Count()))
-             .LastOrDefault().Pipe(x => x == null ? x.EventVersion : concurreny.version)
+             .LastOrDefault().Pipe(x => x == null ? concurreny.version : x.EventVersion)
              );
 
         static EventData[] AppendToStream(EventData[] currentValue, string streamName, (long version, bool check) concurreny, IEvent[] events, Func<long> positionProvider)
