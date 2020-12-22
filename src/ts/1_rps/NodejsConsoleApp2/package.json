@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-console-app2",
+  "version": "0.0.0",
+  "description": "NodejsConsoleApp2",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.19",
+    "@types/node": "^8.0.14",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.4.4",
+    "typescript": "^3.9.7"
+  }
+}
