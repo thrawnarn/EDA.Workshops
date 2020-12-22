@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "NodejsConsoleApp2", "NodejsConsoleApp2\NodejsConsoleApp2.njsproj", "{BDD571E5-0DBE-4C31-B995-6BD8B837720A}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "1_RPS", "RPS\1_RPS.njsproj", "{BDD571E5-0DBE-4C31-B995-6BD8B837720A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
