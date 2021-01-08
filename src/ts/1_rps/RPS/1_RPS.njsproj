@@ -37,6 +37,8 @@
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="highscore.ts" />
+    <TypeScriptCompile Include="highscore.test.ts" />
     <TypeScriptCompile Include="game.test.ts" />
     <TypeScriptCompile Include="game.ts" />
   </ItemGroup>
