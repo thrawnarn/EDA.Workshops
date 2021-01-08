@@ -27,7 +27,7 @@ function apply(state: highScoreView, e: game.GameEvent): highScoreView {
             }
         }
         case 'gameEnded': {
-            const winner = state.games.get(e.event.gameId).sort(x => x.score)[0];
+            const winner = state.games.get(e.event.gameId).sort(x => x.score)[1];
             const index = state.rows.findIndex(x => x.playerId === winner.playerId);
             const newArr = [...state.rows.slice(0, index), { ...state.rows[index], gamesWon: state.rows[index].gamesWon + 1, }, ...state.rows.slice(index + 1)]
             return { ...state, rows: newArr}

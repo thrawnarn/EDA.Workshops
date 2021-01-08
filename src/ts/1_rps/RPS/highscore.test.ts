@@ -51,8 +51,11 @@ test('highscore', () => {
     //then
     //Assert.Equal(25, state.Rows.OrderBy(r => r.Rank).First().GamesWon);
     //Assert.Equal(playerOne, state.Rows.OrderBy(r => r.Rank).First().PlayerId);
+    console.dir(newState.games);
     console.dir(newState.rows);
-    expect(newState.rows.sort(x => x.gamesWon)[1].gamesWon).toBe(25);
+    const first = newState.rows.sort(x => x.gamesWon)[2];
+    expect(first.playerId).toBe(playerOne);
+    expect(first.gamesWon).toBe(25);
     expect(newState.games.size).toBe(50);
     expect(newState.rows.map(s => s.gamesWon).reduce((l, r) => l + r)).toBe(50);
 });
