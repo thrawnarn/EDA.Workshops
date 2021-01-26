@@ -30,7 +30,7 @@ namespace Login.Tests
         public static bool ToManyAttempts(this IEnumerable<IEvent> events, Func<DateTime> timeProvider)
             => events
             .OfType<AuthenticationAttemptFailed>()
-            //TODO
-            .Count() <= 3;
+            .Where(p => p.Time >= timeProvider().AddMinutes(-15))
+            .Count() >= 3;
     }
 }

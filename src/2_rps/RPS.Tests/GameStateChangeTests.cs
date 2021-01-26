@@ -84,7 +84,7 @@ namespace RPS.Tests
             Assert.True(events.OfType<HandShown>().Any());
         }
 
-        [Fact(Skip = "Bonus")]
+        [Fact()]
         public void GameEnd()
         {
             var gameId = Guid.NewGuid();

@@ -11,6 +11,7 @@ namespace Shipping.Tests
 
         public void When(IEvent @event)
         {
+            history.Add(@event);
             var cmd = ShippingPolicy.When((dynamic)@event);
             var state = history.Rehydrate<Order>();
             history.AddRange(OrderBehavior.Handle(state, (dynamic)cmd));
@@ -30,21 +31,51 @@ namespace Shipping.Tests
     public static class OrderBehavior
     {
         public static IEnumerable<IEvent> Handle(this Order order, CompletePayment command)
-            => new[] { new PaymentComplete() };
+        {
+            yield return new PaymentComplete();
+            foreach (var ev in Handle(order))
+                yield return ev;
+        }
 
         public static IEnumerable<IEvent> Handle(this Order order, CompletePacking command)
-            => new[] { new PackingComplete() };
+        {
+            yield return new PackingComplete();
+
+            foreach (var ev in Handle(order))
+                yield return ev;
+        }
+
+        static IEnumerable<IEvent> Handle(this Order order)
+        {
+            if(order.Packed && order.Payed)
+                yield return new GoodsShipped();
+        }
     }
 
     public class Order
     {
         public bool Payed;
         public bool Packed;
+        public bool Shipped;
 
         public Order When(IEvent @event) => this;
 
-        public Order When(PaymentRecieved @event) => this;
-        public Order When(GoodsPicked @event) => this;
+        public Order When(PaymentRecieved @event)
+        {
+            Payed = true;
+            return this;
+        }
+        public Order When(GoodsPicked @event)
+        {
+            Packed = true;
+            return this;
+        }
+
+        public Order When(GoodsShipped @event)
+        {
+            Shipped = true;
+            return this;
+        }
 
     }
 }
